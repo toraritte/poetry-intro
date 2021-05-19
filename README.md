@@ -1,12 +1,24 @@
 # Introduction to the Poetry tool for Python projects
 
-[poetry]:
+[Poetry]:
+  https://python-poetry.org/
+  "The Poetry website"
 
-[poetry_repo]:
+[poetry_docs]:
+  https://python-poetry.org/docs/
+  "The official Poetry documentation pages"
 
-## What is Poetry?
+[poetry_github_repo]:
+  https://github.com/python-poetry/poetry
+  "The GitHub source repository of Poetry"
 
-Poetry is modestly described by [its official documentation](TODO) as a **dependency management** tool, but it is in fact emerging as a de facto standard also TODO(article, https://www.infoworld.com/article/3527850/how-to-manage-python-projects-with-poetry.html) to
+[Nix]:
+  https://nixos.org/
+  "The website of the Nix cross-platform system package manager"
+
+## What is [Poetry]?
+
+[Poetry] is modestly described by [its official documentation](TODO) as a **dependency management** tool, but it is in fact emerging as a de facto standard also TODO(article, https://www.infoworld.com/article/3527850/how-to-manage-python-projects-with-poetry.html) to
 
 + control virtual environments
 + create and publish packages/libraries
@@ -22,7 +34,7 @@ Even though the Python eco-system is rich with internal (`venv`, `pyvenv`) and e
 + one has to carefully choose [which tools to use together][so_a_python_combo]
 + not all such projects run on every operating system (e.g., [`pyenv` does not support Windows directly][pyenv_windows_support])
 
-Poetry aims to consolidate the functionality of all these tools (TODO: paraphrase, https://www.software.com/src/poetry-can-redefine-the-future-of-python), while striving to stay easy to use and configure.
+[Poetry] aims to consolidate the functionality of all these tools (TODO: paraphrase, https://www.software.com/src/poetry-can-redefine-the-future-of-python), while striving to stay easy to use and configure.
 
 [so_python_tools_comparison]:
   https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe
@@ -38,3 +50,68 @@ Poetry aims to consolidate the functionality of all these tools (TODO: paraphras
 
 ### Use cases
 
+## Using [Poetry] with [Nix]
+
+[Nix] is a [cross-platform system package manager](https://en.wikipedia.org/wiki/Nix_package_manager) supported on most major distributions of Unix derivative operating systems (Linux, BSDs, MacOS, etc.) but it is not available on Windows.
+
+The title of the section is deliberately not called "Installation" also because the ["Installation" section](https://python-poetry.org/docs/#installation) of the [Poetry documentation][poetry_docs] comprehensively covers this topic for operating systems **not** managed with [Nix] (the reason I elected to demonstrate [Poetry] with it in the first place), and because [Nix] allows using software (and software components) in a way that doesn't conform to the traditional use of the term.
+
+### "Ad hoc" usage
+
+#### with [`nix-shell`]
+
+[`nix-shell`]:
+  https://nixos.org/manual/nix/stable/#sec-nix-shell
+  "The nix-shell manual pages in the Nix manual"
+
+```shell
+$ nix-shell -p python3 poetry
+```
+
+[`nix-shell`] will start a sub-shell with the latest Python 3 and [Poetry] executables, and one can start hacking.
+
+> NOTE: Once exiting the sub-shell `python3` and `poetry` are still available on the system (see `which poetry` and `which python3`) but they are not referenced in the `PATH` environment variable, hence they will need to be aliased or called by their full path. (Packages used with [`nix-shell`] are also subject to [garbage collection](https://nixos.org/manual/nix/stable/#sec-garbage-collection) after leaving the sub-shell.)
+
+[`nix-shell`] can also be used to set up a more elaborate development environment, and this is probably the most flexible and convenient way.
+
+> ASIDE: (The blog post [DEVELOPING PYTHON WITH POETRY & POETRY2NIX: REPRODUCIBLE FLEXIBLE PYTHON ENVIRONMENTS](https://www.tweag.io/blog/2020-08-12-poetry2nix/) nicely expands on this topic.
+
+#### with [`nix-env`]
+
+[`nix-env`]:
+  https://nixos.org/manual/nix/stable/#sec-nix-env
+  "The nix-env manual pages in the Nix manual"
+
+```shell
+$ nix-env -i python3 poetry
+```
+
+The only difference between with this one-liner and the one in the previous section is that `python3` and `poetry` are now available in `PATH`, and they won't be garbage collected (unless removed with [`nix-env -e`] first).
+
+> TODO: `nix-env -i poetry` fails with `error: selector 'poetry' matches no derivations`; related to channels?
+
+### Declarative installation
+
+> WARNING: This is a more advanced (and sprawling) [Nix] topic, and I still believe that the most convenient way is using [`nix-shell`], but it's mentioned here for completeness sake.
+
+Probably the best places to start is, dependending whether
+
++ on NixOS: [Chapter 6. Package Management](https://nixos.org/manual/nixos/stable/index.html#sec-package-management) in the [NixOS manual](https://nixos.org/manual/nixos/stable/)
+
++ using Nix on other Unix derivatives: [2.6. Declarative Package Management](https://nixos.org/manual/nixpkgs/stable/#sec-declarative-package-management) of the [Nixpkgs manual](https://nixos.org/manual/nixpkgs/stable/)
+
+Nix also offers a lot of freedom on how to do things, and this can complicate things, therefore the following resources are also suggested for reading:
+
++ [Part III. Package Management](https://nixos.org/manual/nix/stable/#chap-package-management) in the [Nix manual](https://nixos.org/manual/nix/stable/)
+
++ [Declarative Configuration](https://nixos.wiki/wiki/Nix#Declarative_Configuration) on the NixOS Wiki
+
++ [Declarative package management for normal users](https://discourse.nixos.org/t/declarative-package-management-for-normal-users/1823) thread on NixOS Discourse
+
++ [Declarative approach to installing packages for user only](https://www.reddit.com/r/NixOS/comments/9324ag/declarative_approach_to_installing_packages_for/) on Reddit
+
++ [How do I do declarative package management using nix package manager on Debian?](https://www.reddit.com/r/NixOS/comments/krz2g8/how_do_i_do_declarative_package_management_using/) on Reddit
+
++ [Difference between nix profiles and home-manager](https://discourse.nixos.org/t/difference-between-nix-profiles-and-home-manager/9539) on NixOS Discourse
+
++ [`/etc/nixos/configuration.nix` vs `~/.config/nixpkgs/config.nix`](https://www.reddit.com/r/NixOS/comments/6izuqh/etcnixosconfigurationnix_vs_confignixpkgsconfignix/) on Reddit
