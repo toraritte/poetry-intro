@@ -1,4 +1,4 @@
-# Introduction to the Poetry tool for Python projects
+# Introduction to the [Poetry] tool for Python projects
 
 [Poetry]:
   https://python-poetry.org/
@@ -74,7 +74,7 @@ $ nix-shell -p python3 poetry
 
 [`nix-shell`] can also be used to set up a more elaborate development environment, and this is probably the most flexible and convenient way.
 
-> ASIDE: (The blog post [DEVELOPING PYTHON WITH POETRY & POETRY2NIX: REPRODUCIBLE FLEXIBLE PYTHON ENVIRONMENTS](https://www.tweag.io/blog/2020-08-12-poetry2nix/) nicely expands on this topic.
+> ASIDE: The blog post [DEVELOPING PYTHON WITH POETRY & POETRY2NIX: REPRODUCIBLE FLEXIBLE PYTHON ENVIRONMENTS](https://www.tweag.io/blog/2020-08-12-poetry2nix/) nicely expands on this topic.
 
 #### with [`nix-env`]
 
@@ -115,3 +115,7 @@ Nix also offers a lot of freedom on how to do things, and this can complicate th
 + [Difference between nix profiles and home-manager](https://discourse.nixos.org/t/difference-between-nix-profiles-and-home-manager/9539) on NixOS Discourse
 
 + [`/etc/nixos/configuration.nix` vs `~/.config/nixpkgs/config.nix`](https://www.reddit.com/r/NixOS/comments/6izuqh/etcnixosconfigurationnix_vs_confignixpkgsconfignix/) on Reddit
+
+## Creating a new [Poetry] project
+
+TODO poetry-start.svg here
