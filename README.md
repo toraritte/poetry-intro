@@ -145,10 +145,10 @@ The above flowchart may not convey clearly how [Poetry] chooses the virtual envi
 <table>
 <thead>
 <tr>
-<th style="white-space:nowrap;"><code>virtualenvs.create</code></th>
-<th style="white-space:nowrap;"><code>virtualenvs.in-project</code></th>
-<th style="white-space:nowrap;"><code>{project-root}/.venv</code> present</th>
-<th>expected behavior</th>
+<th style="white-space:nowrap;color:#e9d8a6;background-color:#2a9d8f;"><code>virtualenvs.create</code></th>
+<th style="white-space:nowrap;color:#e9d8a6;background-color:#2a9d8f;"><code>virtualenvs.in-project</code></th>
+<th style="white-space:nowrap;color:#e9d8a6;background-color:#2a9d8f;"><code>{project-root}/.venv</code> present</th>
+<th style="color:#e9d8a6;background-color:#2a9d8f;">expected behavior</th>
 </tr>
 </thead>
 <tbody>
@@ -190,69 +190,59 @@ The above flowchart may not convey clearly how [Poetry] chooses the virtual envi
 <td rowspan="6"><code>false</code><br>(and <code>pip</code> is available)</td>
 <td rowspan="2"><code>true</code></td>
 <td>yes</td>
-<td>use <code>{project_root}/.venv</code></td>
+<td rowspan="6">I presume that as virtual environments are disabled, the rest depends on the active Python version and <code>pip</code>.</td>
 </tr>
 <tr>
 
 <td>no</td>
-<td>create <code>{project_root}/.venv</code></td>
 </tr>
 <tr>
 
 <td rowspan="2"><code>false</code></td>
 <td>yes</td>
-<td>ignore <code>{project_root}/.venv</code> and use/create global one at <code>virtualenvs.path</code></td>
 </tr>
 <tr>
 
 <td>no</td>
-<td>use/create global one at <code>virtualenvs.path</code></td>
 </tr>
 <tr>
 
 <td rowspan="2">other<br>(∉ {<code>true</code>, <code>false</code>})</td>
 <td>yes</td>
-<td>use <code>{project_root}/.venv</code></td>
 </tr>
 <tr>
 
 
 <td>no</td>
-<td>(?) use/create global one at <code>virtualenvs.path</code></td>
 </tr>
 <tr>
 <td rowspan="6">other<br>(∉ {<code>true</code>, <code>false</code>})</td>
 <td rowspan="2"><code>true</code></td>
 <td>yes</td>
-<td>use <code>{project_root}/.venv</code></td>
+<td rowspan="6">Given that the default value of <a href="https://python-poetry.org/docs/configuration/#virtualenvsin-project-boolean"><font face="Courier New">virtualenvs.in-project </font><b>boolean</b> configuration option</a> is <font face="Courier New">None</font>, this I presume that <code>virtualenvs.create</code> may also be given a value other than <code>true</code> or <code>false</code> - although unsure what [Poetry]'s behaviour will be.</td>
 </tr>
 <tr>
 
 <td>no</td>
-<td>create <code>{project_root}/.venv</code></td>
 </tr>
 <tr>
 
 <td rowspan="2"><code>false</code></td>
 <td>yes</td>
-<td>ignore <code>{project_root}/.venv</code> and use/create global one at <code>virtualenvs.path</code></td>
 </tr>
 <tr>
 
 <td>no</td>
-<td>use/create global one at <code>virtualenvs.path</code></td>
 </tr>
 <tr>
 
 <td rowspan="2">other<br>(∉ {<code>true</code>, <code>false</code>})</td>
 <td>yes</td>
-<td>use <code>{project_root}/.venv</code></td>
 </tr>
 <tr>
 
 
 <td>no</td>
-<td>(?) use/create global one at <code>virtualenvs.path</code></td>
 </tr>
 </tbody>
 </table>
