@@ -119,6 +119,7 @@ Nix also offers a lot of freedom on how to do things, and this can complicate th
 ## Creating a new [Poetry] project
 
 TODO poetry-start.svg here
+![](./poetry-start.svg)
 
 The flowchart below shows how Poetry's configuration options come into play when
 
