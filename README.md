@@ -94,11 +94,11 @@ The only difference between with this one-liner and the one in the previous sect
 
 > WARNING: This is a more advanced (and sprawling) [Nix] topic, and I still believe that the most convenient way is using [`nix-shell`], but it's mentioned here for completeness sake.
 
-Probably the best places to start is, dependending whether
+The following are the best places to start with, depending
 
-+ on NixOS: [Chapter 6. Package Management](https://nixos.org/manual/nixos/stable/index.html#sec-package-management) in the [NixOS manual](https://nixos.org/manual/nixos/stable/)
++ whether on NixOS: [Chapter 6. Package Management](https://nixos.org/manual/nixos/stable/index.html#sec-package-management) in the [NixOS manual](https://nixos.org/manual/nixos/stable/)
 
-+ using Nix on other Unix derivatives: [2.6. Declarative Package Management](https://nixos.org/manual/nixpkgs/stable/#sec-declarative-package-management) of the [Nixpkgs manual](https://nixos.org/manual/nixpkgs/stable/)
++ or using Nix on other Unix derivatives: [2.6. Declarative Package Management](https://nixos.org/manual/nixpkgs/stable/#sec-declarative-package-management) of the [Nixpkgs manual](https://nixos.org/manual/nixpkgs/stable/)
 
 Nix also offers a lot of freedom on how to do things, and this can complicate things, therefore the following resources are also suggested for reading:
 
@@ -119,3 +119,136 @@ Nix also offers a lot of freedom on how to do things, and this can complicate th
 ## Creating a new [Poetry] project
 
 TODO poetry-start.svg here
+
+The flowchart below shows how Poetry's configuration options come into play when
+
++ taking out your project for a spin (using commands such as `poetry shell`, `poetry run`)
+
++ making changes in configuration (e.g., with `poetry config`), or most times
+
++ managing the virtual environment (mostly when using `poetry env`).
+
+(TODO see issue/discussion)
+
+TODO poetry-config.svg here
+
+<table>
+<thead>
+<tr>
+<th style="white-space:nowrap;"><code>virtualenvs.create</code></th>
+<th style="white-space:nowrap;"><code>virtualenvs.in-project</code></th>
+<th style="white-space:nowrap;"><code>{project-root}/.venv</code> present</th>
+<th>expected behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="6"><code>true</code> (default)</td>
+<td>true</td>
+<td>yes</td>
+<td>use <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+<td>true</td>
+<td>no</td>
+<td>create <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+<td>false</td>
+<td>yes</td>
+<td>ignore <code>{project_root}/.venv</code> and use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+<tr>
+
+<td>false</td>
+<td>no</td>
+<td>use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+<tr>
+
+<td rowspan="2">other<br>(∉ {<code>true</code>, <code>false</code>})</td>
+<td>yes</td>
+<td>use <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+
+<td>no</td>
+<td>(?) use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+<tr>
+<td rowspan="6"><code>false</code><br>(and <code>pip</code> is available)</td>
+<td>true</td>
+<td>yes</td>
+<td>use <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+<td>true</td>
+<td>no</td>
+<td>create <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+<td>false</td>
+<td>yes</td>
+<td>ignore <code>{project_root}/.venv</code> and use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+<tr>
+
+<td>false</td>
+<td>no</td>
+<td>use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+<tr>
+
+<td rowspan="2">other<br>(∉ {<code>true</code>, <code>false</code>})</td>
+<td>yes</td>
+<td>use <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+
+<td>no</td>
+<td>(?) use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+<tr>
+<td rowspan="6">other<br>(∉ {<code>true</code>, <code>false</code>})</td>
+<td>true</td>
+<td>yes</td>
+<td>use <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+<td>true</td>
+<td>no</td>
+<td>create <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+<td>false</td>
+<td>yes</td>
+<td>ignore <code>{project_root}/.venv</code> and use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+<tr>
+
+<td>false</td>
+<td>no</td>
+<td>use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+<tr>
+
+<td rowspan="2">other<br>(∉ {<code>true</code>, <code>false</code>})</td>
+<td>yes</td>
+<td>use <code>{project_root}/.venv</code></td>
+</tr>
+<tr>
+
+
+<td>no</td>
+<td>(?) use/create global one at <code>virtualenvs.path</code></td>
+</tr>
+</tbody>
+</table>
