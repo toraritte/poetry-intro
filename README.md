@@ -24,8 +24,6 @@
 + create and publish packages/libraries
 + quickly set up new Python projects (or to easily convert existing ones)
 
-unify
-
 ## Why use it?
 
 Even though the Python eco-system is rich with internal (`venv`, `pyvenv`) and external tools (`pip`, `pyenv`, `pipenv`, `virtualenv`, etc.) that take on one or two of these roles, this diversity can become a serious hindrance:
@@ -137,10 +135,10 @@ The flowchart below shows how Poetry's configuration options come into play when
 <table>
 <thead>
 <tr>
-<th style="white-space:nowrap;height:250px;"><div style="transform:translate(25px,51px) rotate(315deg);width:30px;"><span style="padding:5px 10px;border-bottom: 1px solid #ccc;"><code>virtualenvs.create</code></span></div></th>
-<th style="white-space:nowrap;height:250px;"><div style="transform:translate(25px,51px) rotate(315deg);width:30px;"><span style="padding:5px 10px;border-bottom: 1px solid #ccc;"><code>virtualenvs.in-project</code></span></div></th>
-<th style="white-space:nowrap;height:250px;"><div style="transform:translate(25px,51px) rotate(315deg);width:30px;"><span style="padding:5px 10px;border-bottom: 1px solid #ccc;"><code>{project-root}/.venv</code> present</span></div></th>
-<th style="white-space:nowrap;height:250px;"><div style="transform:translate(25px,51px) rotate(315deg);width:30px;"><span style="padding:5px 10px;border-bottom: 1px solid #ccc;">Exptected behaviour</span></div></th>
+<th style="white-space:nowrap;"><code>virtualenvs.create</code></th>
+<th style="white-space:nowrap;"><code>virtualenvs.in-project</code></th>
+<th style="white-space:nowrap;"><code>{project-root}/.venv</code> present</th>
+<th>expected behavior</th>
 </tr>
 </thead>
 <tbody>
