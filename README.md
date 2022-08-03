@@ -79,7 +79,7 @@ Even though the Python eco-system is rich with internal (`venv`, `pyvenv`) and e
 
 [Nix] is a [cross-platform system package manager](https://en.wikipedia.org/wiki/Nix_package_manager) supported on most major distributions of Unix derivative operating systems (Linux, BSDs, MacOS, etc.) but it is not available on Windows.
 
-<sup>The title of the section is deliberately not called "Installation" also because the ["Installation" section](https://python-poetry.org/docs/#installation) of the [Poetry documentation][poetry_docs] comprehensively covers this topic for operating systems **not** managed with [Nix] (the reason I elected to demonstrate [Poetry] with it in the first place), and because [Nix] allows using software (and software components) in a way that doesn't conform to the traditional use of the term.</sup>
+<sup>The title of the section is deliberately not called "Installation" also because the ["Installation" section](https://python-poetry.org/docs/#installation) of the [Poetry documentation][poetry_docs] comprehensively covers this topic for operating systems **not** managed with [Nix] (the reason I elected to demonstrate using [Poetry] with [Nix] in the first place), and because [Nix] allows using software (and software components) in a way that doesn't conform to the traditional use of the term.</sup>
 
 ### 3.1 "Ad hoc" usage
 
