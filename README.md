@@ -95,7 +95,7 @@ $ nix-shell -p python3 poetry
 
 [`nix-shell`] will start a sub-shell with the latest Python 3 and [Poetry] executables, and one can start hacking.
 
-> NOTE: Once exiting the sub-shell `python3` and `poetry` are still available on the system (see `which poetry` and `which python3`) but they are not referenced in the `PATH` environment variable, hence they will need to be aliased or called by their full path. (Packages used with [`nix-shell`] are also subject to [garbage collection](https://nixos.org/manual/nix/stable/#sec-garbage-collection) after leaving the sub-shell.)
+> NOTE: Once exiting the sub-shell, `python3` and `poetry` are still available on the system (see `which poetry` and `which python3`) but they are not referenced in the `PATH` environment variable. Hence they will need to be aliased or called by their full path. (Packages used with [`nix-shell`] are also subject to [garbage collection](https://nixos.org/manual/nix/stable/#sec-garbage-collection) after leaving the sub-shell.)
 
 [`nix-shell`] can also be used to set up a more elaborate development environment, and this is probably the most flexible and convenient way.
 
