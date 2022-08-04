@@ -79,11 +79,9 @@ Even though the Python eco-system is rich with internal (`venv`, `pyvenv`) and e
 
 [Nix] is a [cross-platform system package manager](https://en.wikipedia.org/wiki/Nix_package_manager) supported on most major distributions of Unix derivative operating systems (Linux, BSDs, MacOS, etc.) but it is not available on Windows.
 
-<sup>The title of the section is deliberately not called "Installation" also because the ["Installation" section](https://python-poetry.org/docs/#installation) of the [Poetry documentation][poetry_docs] comprehensively covers this topic for operating systems **not** managed with [Nix] (the reason I elected to demonstrate [Poetry] with it in the first place), and because [Nix] allows using software (and software components) in a way that doesn't conform to the traditional use of the term.</sup>
+<sup>The title of the section is deliberately not called "Installation" also because the ["Installation" section](https://python-poetry.org/docs/#installation) of the [Poetry documentation][poetry_docs] comprehensively covers this topic for operating systems **not** managed with [Nix] (the reason I elected to demonstrate using [Poetry] with [Nix] in the first place), and because [Nix] allows using software (and software components) in a way that doesn't conform to the traditional use of the term "installation".</sup>
 
-### 3.1 "Ad hoc" usage
-
-#### 3.1.1 with [`nix-shell`]
+### 3.1 "Ad hoc" use with [`nix-shell`]
 
 [`nix-shell`]:
   https://nixos.org/manual/nix/stable/#sec-nix-shell
@@ -95,13 +93,13 @@ $ nix-shell -p python3 poetry
 
 [`nix-shell`] will start a sub-shell with the latest Python 3 and [Poetry] executables, and one can start hacking.
 
-> NOTE: Once exiting the sub-shell `python3` and `poetry` are still available on the system (see `which poetry` and `which python3`) but they are not referenced in the `PATH` environment variable, hence they will need to be aliased or called by their full path. (Packages used with [`nix-shell`] are also subject to [garbage collection](https://nixos.org/manual/nix/stable/#sec-garbage-collection) after leaving the sub-shell.)
+> NOTE: Once exiting the sub-shell, `python3` and `poetry` are still available on the system (see `which poetry` and `which python3`) but they are not referenced in the `PATH` environment variable. Hence they will need to be aliased or called by their full path. (Packages used with [`nix-shell`] are also subject to [garbage collection](https://nixos.org/manual/nix/stable/#sec-garbage-collection) after leaving the sub-shell.)
 
 [`nix-shell`] can also be used to set up a more elaborate development environment, and this is probably the most flexible and convenient way.
 
 > ASIDE: The blog post [Developing Python with Poetry & `poetry2nix`: reproducible flexible Python environments](https://www.tweag.io/blog/2020-08-12-poetry2nix/) nicely expands on this topic.
 
-#### 3.1.2 with [`nix-env`]
+### 3.2 Imperative installation with [`nix-env`]
 
 [`nix-env`]:
   https://nixos.org/manual/nix/stable/#sec-nix-env
@@ -115,7 +113,7 @@ The only difference between with this one-liner and the one in the previous sect
 
 > TODO: `nix-env -i poetry` fails with `error: selector 'poetry' matches no derivations`; related to channels?
 
-### 3.2 Declarative installation
+### 3.3 Declarative installation
 
 > WARNING: This is a more advanced (and sprawling) [Nix] topic, and I still believe that the most convenient way is using [`nix-shell`], but it's mentioned here for completeness sake.
 
